@@ -16,6 +16,8 @@ use Buzz\Client;
  */
 class FeatureContext extends BehatContext
 {
+  private $browser;
+
   /**
    * Initializes context.
    * Every scenario gets its own context object.
@@ -24,11 +26,21 @@ class FeatureContext extends BehatContext
    */
   public function __construct(array $parameters)
   {
+    $this->browser = new Browser(new Client\Curl());
     $this->useContext('api',
-      new Behat\CommonContexts\WebApiContext($parameters['base_url'], new Browser(new Client\Curl()))
+      new Behat\CommonContexts\WebApiContext($parameters['base_url'], $this->browser)
     );
 
     $this->getSubcontext('api')
       ->setPlaceHolder('BASE_URL', rtrim($parameters['base_url'], '/'));
+  }
+
+  /**
+   * @Given /^response should have at least (\d+) json objects$/
+   */
+  public function responseShouldHaveAtLeastJsonObjects($expected)
+  {
+    $res = json_decode($this->browser->getLastResponse()->getContent(), true);
+    assertGreaterThanOrEqual($expected, count($res));
   }
 }

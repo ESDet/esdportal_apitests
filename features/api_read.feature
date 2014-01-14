@@ -16,7 +16,7 @@ Feature: Get school data via API
     """
     Then the response code should be 200
     And response should contain "Cesar Chavez Academy - Elementary East"
-    And response should have more than 297 json objects
+    And response should have at least 297 json objects
 
   Scenario: Get single school data from meap_2009 dataset
 
