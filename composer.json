@@ -1,0 +1,10 @@
+{
+  "require": {
+    "drupal/drupal-extension": "*",
+    "behat/common-contexts": "*",
+    "kriswallsmith/buzz": ">=0.5"
+  },
+  "config": {
+    "bin-dir": "bin/"
+  }
+}

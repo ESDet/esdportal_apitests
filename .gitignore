@@ -1,0 +1,5 @@
+*report*.html
+vendor
+bin
+composer.lock
+composer.phar

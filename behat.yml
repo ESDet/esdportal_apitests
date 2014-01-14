@@ -1,0 +1,12 @@
+default:
+  paths:
+    features: 'features'
+
+  formatter:
+    name: pretty,html
+    parameters:
+      output_path: null,behat_report.html
+
+  context:
+    parameters:
+      base_url: https://portal.excellentschoolsdetroit.org
